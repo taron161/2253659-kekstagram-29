@@ -1,4 +1,4 @@
-import { getRandomInteger, createRandomId } from './util.js';
+import { getRandomInteger, createRandomId, getRandomArrayElement } from './util.js';
 
 const USER_NAMES = [
   'Иван',
@@ -29,8 +29,6 @@ const PHOTO_DESCRIPTIONS = [
 ];
 
 const PHOTOS_COUNT = 25;
-
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 const commentId = createRandomId(1, 999);
 
