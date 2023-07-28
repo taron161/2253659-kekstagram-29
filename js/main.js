@@ -1,5 +1,3 @@
-import { createPhotos } from './data.js';
-
 import './photos.js';
 
-createPhotos();
+import './big-photos-modal.js';
