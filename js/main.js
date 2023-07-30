@@ -1,3 +1,2 @@
 import './photos.js';
-
-import './big-photos-modal.js';
+import './big-photo-modal.js';

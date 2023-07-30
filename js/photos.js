@@ -6,13 +6,13 @@ const photoCardFragment = document.createDocumentFragment();
 
 const photos = createPhotos();
 
-photos.forEach(({url, description, likes, comments}, index) => {
+photos.forEach(({ url, description, likes, comments, id }) => {
   const photoCard = photoCardTemplate.cloneNode(true);
   photoCard.querySelector('.picture__img').src = url;
   photoCard.querySelector('.picture__img').alt = description;
   photoCard.querySelector('.picture__likes').textContent = likes;
   photoCard.querySelector('.picture__comments').textContent = comments.length;
-  photoCard.setAttribute('data-index', index);
+  photoCard.setAttribute('data-id', id);
   photoCardFragment.append(photoCard);
 });
 
