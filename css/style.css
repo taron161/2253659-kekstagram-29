@@ -1411,12 +1411,13 @@ main {
 
 .img-upload__field-error {
   padding: 5px;
-  width: 77%;
+  width: 85%;
   margin: 0 auto;
-  font-size: 14px;
+  margin-bottom: 10px;
+  font-weight: 700;
   color: #e90000;
   text-transform: lowercase;
-  border-radius: 4px;
-  border: 2px dotted #e90000;
+  border-radius: 8px;
+  border: 2px solid #e90000;
   background-color: #ffffff;
 }
