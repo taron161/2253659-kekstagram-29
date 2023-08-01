@@ -25,7 +25,7 @@ const setModalData = ({ url, description, likes, comments }) => {
   modal.querySelector('.social__caption').textContent = description;
 };
 
-// Чистит сккентарии
+// Чистит комментарии
 function cleanComments() {
   modal.querySelector('.social__comments').innerHTML = '';
 }
@@ -94,6 +94,7 @@ loaderButton.addEventListener('click', () => {
 // Событие при нажатии на превью
 picturesList.addEventListener('click', (evt) => {
   if (evt.target.closest('.picture')) {
+    evt.preventDefault();
     const photoId = evt.target.parentElement.dataset.id;
     const photo = photos.find((item) => item.id === Number(photoId));
     openModal(photo);

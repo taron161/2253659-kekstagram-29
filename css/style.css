@@ -1408,3 +1408,15 @@ main {
 .hidden {
   display: none;
 }
+
+.img-upload__field-error {
+  padding: 5px;
+  width: 77%;
+  margin: 0 auto;
+  font-size: 14px;
+  color: #e90000;
+  text-transform: lowercase;
+  border-radius: 4px;
+  border: 2px dotted #e90000;
+  background-color: #ffffff;
+}
