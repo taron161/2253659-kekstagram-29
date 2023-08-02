@@ -1,3 +1,6 @@
+import { sendData } from './api.js';
+import { closeModal } from './upload-form.js';
+
 const modal = document.querySelector('.img-upload__overlay');
 
 const MAX_HASHTAG_COUNT = 5;
@@ -17,13 +20,7 @@ const pristine = new Pristine(form, {
 //удаляет двойные пробелы и добавляет элементы в массив
 const getHashtags = (str) => str.trim().replace(/\s{2,}/g, ' ').split(' ');
 
-const isValidHashtags = (str) => {
-  if (str.trim().length === 0) {
-    return true;
-  } else {
-    return getHashtags(str).every((item) => VALID_HASHTAG_SYMBOLS.test(item));
-  }
-};
+const isValidHashtags = (str) => str.trim().length === 0 ? true : getHashtags(str).every((item) => VALID_HASHTAG_SYMBOLS.test(item));
 
 const isValidCount = (str) => getHashtags(str).length <= MAX_HASHTAG_COUNT;
 
@@ -56,9 +53,13 @@ form.addEventListener('submit', (evt) => {
 
   const isValid = pristine.validate();
   if (isValid) {
-    getHashtags('можно отправлять');
-  } else {
-    getHashtags('Нельзя отправлять');
+    const data = new FormData(evt.target);
+    try {
+      sendData(data);
+      closeModal();
+    } catch {
+      getHashtags('sad asd');
+    }
   }
 });
 

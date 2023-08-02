@@ -1,6 +1,5 @@
 const modal = document.querySelector('.big-picture');
 
-
 const createCommentsFragment = (comments, maxCount, minCount) => {
   const commentsFragment = document.createDocumentFragment();
   const commentsPart = comments.slice(minCount, maxCount);
@@ -27,7 +26,6 @@ const createCommentsFragment = (comments, maxCount, minCount) => {
   return commentsFragment;
 };
 
-// Создает поля с комментариями
 const addComments = (comments, minCount, maxCount) => {
   if (maxCount > comments.length) {
     maxCount = comments.length;
@@ -36,9 +34,6 @@ const addComments = (comments, minCount, maxCount) => {
   commentContainer.append(createCommentsFragment(comments, maxCount, minCount));
 };
 
-// Проверяет, больше ли общее количество комментариев, чем
-// показанное. Если да, то оставляет кнопку загрузки новых комментариев,
-// если нет, скрывает ее и приравнивает значения
 const checkQuantityOfComment = (totalCommentsCount, currentCommentsCount) => {
   const currentCountElement = modal.querySelector('.comments-current');
   const loaderButton = modal.querySelector('.comments-loader');
