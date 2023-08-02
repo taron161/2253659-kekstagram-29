@@ -1,5 +1,11 @@
 import { preview } from './effects.js';
 
+const SCALABLE_VALUE = 25;
+
+const MIN_SCALE_VALUE = 25;
+
+const MAX_SCALE_VALUE = 100;
+
 const modal = document.querySelector('.img-upload__overlay');
 
 const scaleInput = modal.querySelector('.scale__control--value');
@@ -8,26 +14,28 @@ const scaleControlSmaller = modal.querySelector('.scale__control--smaller');
 
 const scaleControlBigger = modal.querySelector('.scale__control--bigger');
 
-let scaleValue = 100;
+let currentScaleValue = 100;
 
 const setPreviewScale = (value) => {
   scaleInput.value = `${value}'%`;
   preview.style.transform = `scale(${value}%)`;
-  scaleValue = value;
+  currentScaleValue = value;
 };
 
+const resetScale = () => setPreviewScale(MAX_SCALE_VALUE);
+
 scaleControlSmaller.addEventListener('click', () => {
-  if (scaleValue >= 50) {
-    scaleValue -= 25;
-    setPreviewScale(scaleValue);
+  if (currentScaleValue >= MIN_SCALE_VALUE + SCALABLE_VALUE) {
+    currentScaleValue -= SCALABLE_VALUE;
+    setPreviewScale(currentScaleValue);
   }
 });
 
 scaleControlBigger.addEventListener('click', () => {
-  if (scaleValue <= 75) {
-    scaleValue += 25;
-    setPreviewScale(scaleValue);
+  if (currentScaleValue <= MAX_SCALE_VALUE - SCALABLE_VALUE) {
+    currentScaleValue += SCALABLE_VALUE;
+    setPreviewScale(currentScaleValue);
   }
 });
 
-export { setPreviewScale };
+export { resetScale };

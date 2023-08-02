@@ -1,5 +1,5 @@
 import { isEscapeKey } from './util.js';
-import { setPreviewScale } from './scale.js';
+import { resetScale } from './scale.js';
 import { hashtagsInput } from './validator.js';
 import { resetEffects } from './effects.js';
 
@@ -15,7 +15,7 @@ const resetForm = () => {
   uploadInput.value = '';
   hashtagsInput.value = '';
   descriptionInput.value = '';
-  setPreviewScale(100);
+  resetScale();
   resetEffects();
 };
 
@@ -56,4 +56,4 @@ function onModalEscapeKeydown (evt) {
   }
 }
 
-export { modal };
+export { modal, closeModal };

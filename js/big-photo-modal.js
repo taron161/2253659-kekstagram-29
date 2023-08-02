@@ -16,7 +16,6 @@ let targetComments = [];
 let currentCount = COMMENTS_LOAD_COUNT;
 let totalCount;
 
-// Передает данные выбранного объекта в модальное окно
 const setModalData = ({ url, description, likes, comments }) => {
   modal.querySelector('.big-picture__img img').src = url;
   modal.querySelector('.big-picture__img img').alt = description;
@@ -25,14 +24,12 @@ const setModalData = ({ url, description, likes, comments }) => {
   modal.querySelector('.social__caption').textContent = description;
 };
 
-// Чистит комментарии
 function cleanComments() {
   modal.querySelector('.social__comments').innerHTML = '';
 }
 
 cleanComments();
 
-// Функция для события при нажатии на Esc
 const onModalEscapeKeydown = (evt) => {
   if (isEscapeKey(evt)) {
     evt.preventDefault();
@@ -40,7 +37,6 @@ const onModalEscapeKeydown = (evt) => {
   }
 };
 
-// Функция для события при нажатии на Enter
 const onPhotoEnterKeydown = (evt) => {
   if (isEnterKey(evt)) {
     if (evt.target.classList.contains('picture')) {
@@ -52,7 +48,6 @@ const onPhotoEnterKeydown = (evt) => {
   }
 };
 
-// Закрывает модальное окно и сбрасывает данные об объекте
 function closeModal () {
   modal.querySelector('.big-picture__img img').innerHTML = '';
   modal.querySelector('.likes-count').innerHTML = '';
@@ -68,7 +63,6 @@ function closeModal () {
   currentCount = COMMENTS_LOAD_COUNT;
 }
 
-// Открывает модальное окно
 function openModal (photo) {
   document.body.classList.add('modal-open');
   modal.classList.remove('hidden');
@@ -83,7 +77,7 @@ function openModal (photo) {
   checkQuantityOfComment(totalCount, currentCount);
 }
 
-// Событие на нажатие кнопки загрузки новых комментариев
+
 loaderButton.addEventListener('click', () => {
   currentCount += COMMENTS_LOAD_COUNT;
   checkQuantityOfComment(totalCount, currentCount);
@@ -91,7 +85,6 @@ loaderButton.addEventListener('click', () => {
   addComments(targetComments, currentCount - COMMENTS_LOAD_COUNT, currentCount);
 });
 
-// Событие при нажатии на превью
 picturesList.addEventListener('click', (evt) => {
   if (evt.target.closest('.picture')) {
     evt.preventDefault();
@@ -103,12 +96,10 @@ picturesList.addEventListener('click', (evt) => {
 
 picturesList.addEventListener('keydown', onPhotoEnterKeydown);
 
-// Событие при нажатии на крестик в модальном окне
 closeButton.addEventListener('click', () => {
   closeModal();
 });
 
-// Выбирает картинку при помощи Enter
 closeButton.addEventListener('keydown', (evt) => {
   if (isEnterKey(evt)) {
     closeModal();

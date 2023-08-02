@@ -1,12 +1,5 @@
-const EFFECTS = {
-  none: {
-    effect: 'none',
-    reset: () => {
-      resetEffects();
-    }
-  },
-
-  chrome: {
+const Effect = {
+  CHROME: {
     min: 0,
     max: 1,
     step: 0.1,
@@ -14,7 +7,7 @@ const EFFECTS = {
     unit: ''
   },
 
-  sepia: {
+  SEPIA: {
     min: 0,
     max: 1,
     step: 0.1,
@@ -22,7 +15,7 @@ const EFFECTS = {
     unit: ''
   },
 
-  marvin: {
+  MARVIN: {
     min: 0,
     max: 100,
     step: 1,
@@ -30,7 +23,7 @@ const EFFECTS = {
     unit: '%'
   },
 
-  phobos: {
+  PHOBOS: {
     min: 0,
     max: 3,
     step: 0.1,
@@ -38,7 +31,7 @@ const EFFECTS = {
     unit: 'px'
   },
 
-  heat: {
+  HEAT: {
     min: 1,
     max: 3,
     step: 0.1,
@@ -101,9 +94,9 @@ function resetEffects () {
 
 effectsContainer.addEventListener('change', (evt) => {
   if (evt.target.value === 'none') {
-    EFFECTS[evt.target.value].reset();
+    resetEffects();
   } else {
-    setEffect(EFFECTS[evt.target.value]);
+    setEffect(Effect[evt.target.value.toUpperCase()]);
   }
 });
 
