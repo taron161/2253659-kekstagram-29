@@ -1,5 +1,4 @@
-import { sendData } from './api.js';
-import { closeModal } from './upload-form.js';
+import { submitData } from './submit.js';
 
 const modal = document.querySelector('.img-upload__overlay');
 
@@ -54,12 +53,7 @@ form.addEventListener('submit', (evt) => {
   const isValid = pristine.validate();
   if (isValid) {
     const data = new FormData(evt.target);
-    try {
-      sendData(data);
-      closeModal();
-    } catch {
-      getHashtags('sad asd');
-    }
+    submitData(data);
   }
 });
 
