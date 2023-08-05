@@ -1,7 +1,8 @@
 import { isEscapeKey } from './util.js';
 import { resetScale } from './scale.js';
 import { hashtagsInput } from './validator.js';
-import { resetEffects } from './effects.js';
+import { resetEffects, preview } from './effects.js';
+import { getImage } from './upload-image.js';
 
 const uploadInput = document.querySelector('.img-upload__input');
 
@@ -25,6 +26,7 @@ const openModal = () => {
   hashtagsInput.addEventListener('keydown', onFieldEscKeydown);
   descriptionInput.addEventListener('keydown', onFieldEscKeydown);
   document.body.classList.add('modal-open');
+  getImage(uploadInput, preview);
   resetEffects();
 };
 
