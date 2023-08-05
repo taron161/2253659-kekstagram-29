@@ -56,4 +56,4 @@ function onModalEscapeKeydown (evt) {
   }
 }
 
-export { modal, closeModal };
+export { modal, closeModal, onModalEscapeKeydown };

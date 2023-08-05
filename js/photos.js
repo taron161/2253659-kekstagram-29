@@ -5,11 +5,21 @@ const photoCardTemplate = document.querySelector('#picture').content.querySelect
 
 const photoCardFragment = document.createDocumentFragment();
 
-const addPhotosOnPage = (array) => {
-  array.forEach(({ url, description, likes, comments, id }) => {
+const deletePhotos = () => {
+  const pictures = document.querySelectorAll('.picture');
+  pictures.forEach((item) => {
+    item.remove();
+  });
+};
+
+const addPhotosOnPage = (items) => {
+  deletePhotos();
+
+  items.forEach(({ url, description, likes, comments, id }) => {
     const photoCard = photoCardTemplate.cloneNode(true);
-    photoCard.querySelector('.picture__img').src = url;
-    photoCard.querySelector('.picture__img').alt = description;
+    const img = photoCard.querySelector('.picture__img');
+    img.src = url;
+    img.alt = description;
     photoCard.querySelector('.picture__likes').textContent = likes;
     photoCard.querySelector('.picture__comments').textContent = comments.length;
     photoCard.setAttribute('data-id', id);
@@ -19,14 +29,15 @@ const addPhotosOnPage = (array) => {
   document.querySelector('.pictures').append(photoCardFragment);
 };
 
-let arr = [];
+let tmpPhotos = [];
 try {
   const data = await getData();
   addPhotosOnPage(data);
-  arr = data.slice(data);
+  tmpPhotos = data.slice(data);
+  document.querySelector('.img-filters').classList.remove('img-filters--inactive');
 } catch (err) {
   showAlert(err.message);
 }
-const photos = arr.slice();
+const photos = tmpPhotos.slice();
 
-export { photos };
+export { photos, addPhotosOnPage };

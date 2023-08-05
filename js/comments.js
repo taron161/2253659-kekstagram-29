@@ -3,6 +3,7 @@ const modal = document.querySelector('.big-picture');
 const createCommentsFragment = (comments, maxCount, minCount) => {
   const commentsFragment = document.createDocumentFragment();
   const commentsPart = comments.slice(minCount, maxCount);
+
   commentsPart.forEach(({ avatar, message, name, id }) => {
     const comment = document.createElement('li');
     comment.classList.add('social__comment');

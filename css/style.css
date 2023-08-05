@@ -1421,3 +1421,38 @@ main {
   border: 2px solid #e90000;
   background-color: #ffffff;
 }
+
+.alert-container {
+  position: absolute;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  right: 0;
+  padding: 15px;
+  font-size: 25px;
+  line-height: 30px;
+  color: #e90000;
+  text-align: center;
+  min-height: 70px;
+  background-color: #cccccc;
+  border-radius: 0 0 10px 10px;
+  border: 3px solid #e90000;
+  animation-name: show-alert;
+  animation-timing-function: cubic-bezier(1,0,1,1);
+  animation-duration: 0.5s;
+}
+
+@keyframes show-alert {
+  0% {
+    top: -70px;
+  }
+  75% {
+    top: 0;
+  }
+  90% {
+    top: -10px;
+  }
+  100% {
+    top: 0
+  }
+}

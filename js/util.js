@@ -1,35 +1,4 @@
-const ALERT_SHOW_TIME = 3000;
-
-// создает случайное число из диапазона
-const getRandomInteger = (a, b) => {
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
-};
-
-// генерация случайных неповоторяющихся чисел
-const createRandomId = (min, max) => {
-  const ArrayOfRandomId = [];
-
-  return function () {
-    let currentId = getRandomInteger(min, max);
-
-    if (ArrayOfRandomId.length >= (max - min + 1)) {
-      return null;
-    }
-
-    while (ArrayOfRandomId.includes(currentId)) {
-      currentId = getRandomInteger(min, max);
-    }
-
-    ArrayOfRandomId.push(currentId);
-
-    return currentId;
-  };
-};
-
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
+const ALERT_SHOW_TIME = 5000;
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
@@ -37,15 +6,7 @@ const isEnterKey = (evt) => evt.key === 'Enter';
 
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
-  alertContainer.style.zIndex = '100';
-  alertContainer.style.position = 'absolute';
-  alertContainer.style.left = '0';
-  alertContainer.style.top = '0';
-  alertContainer.style.right = '0';
-  alertContainer.style.padding = '10px 3px';
-  alertContainer.style.fontSize = '30px';
-  alertContainer.style.textAlign = 'center';
-  alertContainer.style.backgroundColor = 'red';
+  alertContainer.classList.add('alert-container');
 
   alertContainer.textContent = message;
 
@@ -56,11 +17,55 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
+const getRandomInteger = (a, b) => {
+  const lower = Math.ceil(Math.min(a, b));
+  const upper = Math.floor(Math.max(a, b));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
+};
+
+const createRandomId = (min, max) => {
+  const randomNumbers = [];
+
+  return function () {
+    let currentId = getRandomInteger(min, max);
+    if (randomNumbers.length >= (max - min + 1)) {
+      return null;
+    }
+    while (randomNumbers.includes(currentId)) {
+      currentId = getRandomInteger(min, max);
+    }
+    randomNumbers.push(currentId);
+    return currentId;
+  };
+};
+
+const sortDescending = (items, key) => {
+  items.sort((a, b) => {
+    if (a[key].length < b[key].length) {
+      return 1;
+    }
+    if (a[key].length > b[key].length) {
+      return -1;
+    }
+    return 0;
+  });
+  return items;
+};
+
+function debounce(callback, timeoutDelay) {
+  let timeoutId;
+  return function(...rest) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
 export{
-  getRandomInteger,
-  createRandomId,
-  getRandomArrayElement,
   isEscapeKey,
   isEnterKey,
-  showAlert
+  showAlert,
+  sortDescending,
+  createRandomId,
+  debounce
 };
