@@ -5,8 +5,17 @@ const photoCardTemplate = document.querySelector('#picture').content.querySelect
 
 const photoCardFragment = document.createDocumentFragment();
 
-const addPhotosOnPage = (array) => {
-  array.forEach(({ url, description, likes, comments, id }) => {
+const deletePhotos = () => {
+  const pictures = document.querySelectorAll('.picture');
+  pictures.forEach((item) => {
+    item.remove();
+  });
+};
+
+const addPhotosOnPage = (items) => {
+  deletePhotos();
+
+  items.forEach(({ url, description, likes, comments, id }) => {
     const photoCard = photoCardTemplate.cloneNode(true);
     const img = photoCard.querySelector('.picture__img');
     img.src = url;
@@ -25,9 +34,10 @@ try {
   const data = await getData();
   addPhotosOnPage(data);
   tmpPhotos = data.slice(data);
+  document.querySelector('.img-filters').classList.remove('img-filters--inactive');
 } catch (err) {
   showAlert(err.message);
 }
 const photos = tmpPhotos.slice();
 
-export { photos };
+export { photos, addPhotosOnPage };

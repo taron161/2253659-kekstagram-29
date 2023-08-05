@@ -41,6 +41,7 @@ pristine.addValidator(
   'Хэш-теги не должны повторяться'
 );
 
+
 pristine.addValidator(
   hashtagsInput,
   isValidHashtags,
